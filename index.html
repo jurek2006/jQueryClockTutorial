@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="pl" />
+
+<title>jQuery Clock Tutorial</title>
+<!-- Na podstawie: http://www.alessioatzeni.com/blog/css3-digital-clock-with-jquery/ -->
+
+<link rel="stylesheet" type="text/css" href="css/styl.css">
+</head>
+
+<body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var dayNames = ["Niedziela, Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"];
+
+		// Create a new Date() object
+		var newDate = new Date();
+
+		// Extract the current date from Date object
+		newDate.setDate(newDate.getDate());
+
+		// Output the day, date, month and year
+		$("#Date").html(dayNames[newDate.getDay()] + ", " + newDate.getDate() + "-" + ((newDate.getMonth() < 10) ? "0" : "") + newDate.getMonth() + "-" + newDate.getFullYear());
+
+		setInterval(function(){
+			// create a newDate() object and extract the second of the current time on the visitor's
+			var seconds = new Date().getSeconds();
+			// extract the minutes
+			var minutes = new Date().getMinutes();
+			// extract hours
+			var hours = new Date().getHours();
+
+			$("#min").html((minutes < 10 ? "0" : "") + minutes);
+			$("#sec").html((seconds < 10 ? "0" : "") + seconds);
+			$("#hours").html((hours < 10 ? "0" : "") + hours);
+		}, 1000);
+	});
+</script>
+
+<header></header>
+
+<section>
+	<div class="clock">
+	<div id="Date"></div>
+	  <ul>
+	      <li id="hours"></li>
+	      <li class="point">:</li>
+	      <li id="min"></li>
+	      <li class="point">:</li>
+	      <li id="sec"></li>
+	  </ul>
+	</div>
+</section>
+
+<footer></footer>
+
+</body>
+
+</html>
